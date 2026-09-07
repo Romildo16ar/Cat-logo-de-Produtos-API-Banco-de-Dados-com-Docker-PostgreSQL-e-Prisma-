@@ -1,0 +1,32 @@
+// Prisma schema - Catalogo de itens de Ata de Registro de Precos (CIESP)
+// Docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// Item registrado em uma Ata de Registro de Precos.
+/// Equivalente ao "produto" do catalogo: cada linha e um item licitado,
+/// com preco unitario registrado, fornecedor detentor e vigencia da ata.
+model AtaItem {
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar(160)
+  description String   @db.Text
+  unit        String   @db.VarChar(20)
+  quantity    Int
+  /// Preco unitario registrado. Decimal (nunca float) para nao perder precisao monetaria.
+  price       Decimal  @db.Decimal(12, 4)
+  supplier    String   @db.VarChar(160)
+  ataNumber   String   @map("ata_number") @db.VarChar(40)
+  validUntil  DateTime @map("valid_until") @db.Date
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@index([ataNumber])
+  @@map("ata_items")
+}

@@ -1,0 +1,156 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-09-07T00:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:v9",
+  "resources": [
+    {
+      "_id": "wrk_ata_ciesp",
+      "_type": "workspace",
+      "parentId": null,
+      "name": "API Ata de Registro de Precos - CIESP",
+      "description": "Requisicoes de teste da tarefa avaliativa (Express + Prisma + PostgreSQL).",
+      "scope": "collection"
+    },
+    {
+      "_id": "env_base",
+      "_type": "environment",
+      "parentId": "wrk_ata_ciesp",
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:3000",
+        "item_id": "1"
+      },
+      "dataPropertyOrder": {
+        "&": ["base_url", "item_id"]
+      },
+      "metaSortKey": 1,
+      "isPrivate": false
+    },
+    {
+      "_id": "fld_status",
+      "_type": "request_group",
+      "parentId": "wrk_ata_ciesp",
+      "name": "1 - Status",
+      "description": "",
+      "environment": {},
+      "metaSortKey": -100
+    },
+    {
+      "_id": "fld_itens",
+      "_type": "request_group",
+      "parentId": "wrk_ata_ciesp",
+      "name": "2 - Itens da Ata (CRUD)",
+      "description": "",
+      "environment": {},
+      "metaSortKey": -90
+    },
+    {
+      "_id": "req_status",
+      "_type": "request",
+      "parentId": "fld_status",
+      "name": "GET / - status da API",
+      "method": "GET",
+      "url": "{{ _.base_url }}/",
+      "body": {},
+      "headers": [],
+      "parameters": [],
+      "authentication": {},
+      "metaSortKey": -100
+    },
+    {
+      "_id": "req_list",
+      "_type": "request",
+      "parentId": "fld_itens",
+      "name": "GET /products - lista todos",
+      "method": "GET",
+      "url": "{{ _.base_url }}/products",
+      "body": {},
+      "headers": [],
+      "parameters": [],
+      "authentication": {},
+      "metaSortKey": -90
+    },
+    {
+      "_id": "req_get_one",
+      "_type": "request",
+      "parentId": "fld_itens",
+      "name": "GET /products/:id - busca por id",
+      "method": "GET",
+      "url": "{{ _.base_url }}/products/{{ _.item_id }}",
+      "body": {},
+      "headers": [],
+      "parameters": [],
+      "authentication": {},
+      "metaSortKey": -80
+    },
+    {
+      "_id": "req_get_404",
+      "_type": "request",
+      "parentId": "fld_itens",
+      "name": "GET /products/9999 - 404 esperado",
+      "method": "GET",
+      "url": "{{ _.base_url }}/products/9999",
+      "body": {},
+      "headers": [],
+      "parameters": [],
+      "authentication": {},
+      "metaSortKey": -70
+    },
+    {
+      "_id": "req_create",
+      "_type": "request",
+      "parentId": "fld_itens",
+      "name": "POST /products - cria item",
+      "method": "POST",
+      "url": "{{ _.base_url }}/products",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"title\": \"Impressora multifuncional laser monocromatica\",\n  \"description\": \"Impressora laser monocromatica com duplex automatico, rede Gigabit e ciclo mensal de 50.000 paginas.\",\n  \"unit\": \"UN\",\n  \"quantity\": 40,\n  \"price\": \"3190.9000\",\n  \"supplier\": \"Tecnolog Suprimentos de Informatica LTDA\",\n  \"ataNumber\": \"ARP 012/2026\",\n  \"validUntil\": \"2026-12-31\"\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "parameters": [],
+      "authentication": {},
+      "metaSortKey": -60
+    },
+    {
+      "_id": "req_update",
+      "_type": "request",
+      "parentId": "fld_itens",
+      "name": "PUT /products/:id - atualiza item",
+      "method": "PUT",
+      "url": "{{ _.base_url }}/products/{{ _.item_id }}",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"title\": \"Notebook corporativo 14 pol i5 16GB (revisado)\",\n  \"description\": \"Notebook 14 polegadas, Intel Core i5 13a geracao, 16 GB DDR5, SSD NVMe 1 TB, Windows 11 Pro, garantia on-site de 36 meses.\",\n  \"unit\": \"UN\",\n  \"quantity\": 150,\n  \"price\": \"5120.7500\",\n  \"supplier\": \"Tecnolog Suprimentos de Informatica LTDA\",\n  \"ataNumber\": \"ARP 012/2026\",\n  \"validUntil\": \"2026-12-31\"\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "parameters": [],
+      "authentication": {},
+      "metaSortKey": -50
+    },
+    {
+      "_id": "req_delete",
+      "_type": "request",
+      "parentId": "fld_itens",
+      "name": "DELETE /products/:id - remove item",
+      "method": "DELETE",
+      "url": "{{ _.base_url }}/products/{{ _.item_id }}",
+      "body": {},
+      "headers": [],
+      "parameters": [],
+      "authentication": {},
+      "metaSortKey": -40
+    }
+  ]
+}

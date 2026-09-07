@@ -1,0 +1,51 @@
+{
+  "name": "api-ata-registro-precos",
+  "version": "1.0.0",
+  "description": "API REST de catalogo de itens de Ata de Registro de Precos (CIESP) - Node.js + TypeScript + Express + Prisma + PostgreSQL",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "typecheck": "tsc --noEmit",
+    "seed": "tsx prisma/seed.ts",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:generate": "prisma generate",
+    "prisma:studio": "prisma studio",
+    "prisma:reset": "prisma migrate reset --force",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:logs": "docker compose logs -f postgres",
+    "setup": "npm install && docker compose up -d && npx prisma migrate dev --name init && npm run seed"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "keywords": [
+    "ata-registro-precos",
+    "licitacao",
+    "express",
+    "prisma",
+    "postgresql"
+  ],
+  "author": "Romildo Aparecido Rezende",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^6.16.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.10.2",
+    "prisma": "^6.16.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  },
+  "allowScripts": {
+    "prisma": true,
+    "@prisma/client": true,
+    "@prisma/engines": true,
+    "esbuild": true
+  }
+}
